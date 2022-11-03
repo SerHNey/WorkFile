@@ -3,7 +3,6 @@
 int main() {
 	system("chcp 1251 >null");
 	char* filе = "vvod.txt";
-	FILE* fp;
 	float a, b, c;
 	int razdel = 0;
 
@@ -22,8 +21,8 @@ int main() {
 			if (text[i] == '\n') {
 				razdel = 1;
 			}
-			if (text[i] < -1 || text[i] >96) {
-				printf("");
+			else if (text[i] < -1 || text[i] >96) { // Смотрит по кодировке 
+				printf("Ошибка в коэффициентах");
 				return 1;
 			}
 		}
