@@ -2,39 +2,39 @@
 
 int main() {
 	system("chcp 1251 >null");
-	char* filename = "vvod.txt";
-	char cc[256];
+	char* filе = "vvod.txt";
 	FILE* fp;
 	float a, b, c;
-	int bool = 0;
-	if ((filename = fopen("vvod.txt", "r")))
+	int razdel = 0;
+
+	if ((filе = fopen("vvod.txt", "r")))
 	{
-		fseek(filename, 0, SEEK_END);
-		long size = ftell(filename);
-		fseek(filename, 0, SEEK_SET);
+		fseek(filе, 0, SEEK_END); // Переносит указатель в конец файла
+		long size = ftell(filе); // Возращает положение указателя
+		fseek(filе, 0, SEEK_SET); // Устанавливает указатель в начало файла
 		char* text = calloc(size, 1);
-		for (size_t i = 0; i < size; i++)
+		for (size_t i = 0; i < size; i++) // Считываем строку
 		{
-			text[i] = fgetc(filename);
+			text[i] = fgetc(filе);
 		}
-		for (size_t i = 0; i < size; i++)
+		for (size_t i = 0; i < size; i++) // Проверяем строку на разделители
 		{
 			if (text[i] == '\n') {
-				bool = 1;
+				razdel = 1;
 			}
 			if (text[i] < -1 || text[i] >96) {
 				printf("");
 				return 1;
 			}
 		}
-		fseek(filename, 0, SEEK_SET);
-		if (bool == 1) {
-			fscanf(filename, "%f\n%f\n%f", &a, &b, &c);
+		fseek(filе, 0, SEEK_SET);
+		if (razdel == 1) {
+			fscanf(filе, "%f\n%f\n%f", &a, &b, &c);
 			printf("a = %f\nb = %f\nc = %f", a, b, c);
 		}
 		else
 		{
-			fscanf(filename, "%f %f %f", &a, &b, &c);
+			fscanf(filе, "%f %f %f", &a, &b, &c);
 			printf("a = %f\nb = %f\nc = %f", a, b, c);
 		}
 	}
