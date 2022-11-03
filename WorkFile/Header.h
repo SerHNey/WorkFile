@@ -7,6 +7,4 @@
 #include <string.h> 
 #include <math.h>
 
-int filewrite();
-int fileread();
 int kvadran_koren(double a, double b, double c);

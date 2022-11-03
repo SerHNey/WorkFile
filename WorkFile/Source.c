@@ -2,7 +2,7 @@
 
 int main() {
 	system("chcp 1251 >null");
-	filewrite();
+	//filewrite();
 	char* filename = "vvod.txt";
 	char cc[256];
 	FILE* fp;
@@ -39,63 +39,39 @@ int main() {
 			printf("a = %f\nb = %f\nc = %f", a, b, c);
 		}
 	}
-	kvadran_koren(a,b,c);
-
-	return 0;
-}
-int filewrite()
-	{
-	float x1 = 1;
-	FILE* answer = fopen("otvet.txt", "w+t");
-
-	fprintf(answer, "x1 = %f", x1);
-	//fputs(message, fp);
-
-	fclose(answer);
+	if (a != 0) {
+		kvadran_koren(a,b,c);
 	}
-
-int fileread() {
-	char* filename = "vvod.txt";
-	char cc[256];
-	FILE* fp; 
-
-	if ((fp = fopen(filename, "r")) == NULL)
+	else
 	{
-		perror("Error occured while opening file");
-		return 1;
+		printf("\nТак как коэффициент a = %f, то квадратное уравнение не решается", a);
 	}
-	// пока не дойдем до конца, считываем по 256 байт
-	while ((fgets(cc, 256, fp)) != NULL)
-	{
-		printf("%s", cc);
-	}
-	fclose(fp);
 	return 0;
 }
 
 
 int kvadran_koren(double a, double b, double c) {
 	FILE* answer = fopen("otvet.txt", "w+t");
-
-	
-
-
 	double diskrimenant = sqrt(pow(b,2) - 4 * a * c);
 	if (diskrimenant < 0) {
-		printf("Действительных корней нет");
+		fprintf(answer, "Так, как дискриминант = %f , корней уравнения нет", diskrimenant);
+		printf("\nДействительных корней нет");
 	}
 	if (diskrimenant == 0) {
 		c = (-b) / (2 * a);
-		fprintf(answer, "x = %f", c);
-		printf("Корень равен %f", c);
+
+		fprintf(answer, "Так как дискрименант равен =%f , то корни одинаковы и равны = %f", diskrimenant, c);
+		printf("\nТак как дискрименант равен =%f , то корни x1,x2 одинаковы и равны = %f", diskrimenant, c);
 	}
 	if (diskrimenant > 0) {
+		fprintf(answer, "Дискриминант = %f ", diskrimenant);
+		printf("\nДискриминант = %f ", diskrimenant);
 		c = (-b + diskrimenant) / (2 * a);
 		fprintf(answer, "x1 = %f", c);
-		printf("\nКорень равен 1 %f\n", c);
+		printf("\nКорень равен 1 = %f", c);
 		c = (-b - diskrimenant) / (2 * a);
 		fprintf(answer, "x2 = %f", c);
-		printf("\nКорень равен 2 %f\n", c);
+		printf("\nКорень равен 2 = %f\n", c);
 	}
 	fclose(answer);
 	return 0;
