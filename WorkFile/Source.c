@@ -2,7 +2,6 @@
 
 int main() {
 	system("chcp 1251 >null");
-	//filewrite();
 	char* filename = "vvod.txt";
 	char cc[256];
 	FILE* fp;
@@ -51,28 +50,28 @@ int main() {
 
 
 int kvadran_koren(double a, double b, double c) {
-	FILE* answer = fopen("otvet.txt", "w+t");
+	FILE* ovtev = fopen("otvet.txt", "w+t");
 	double diskrimenant = sqrt(pow(b,2) - 4 * a * c);
 	if (diskrimenant < 0) {
-		fprintf(answer, "Так, как дискриминант = %f , корней уравнения нет", diskrimenant);
+		fprintf(ovtev, "Так, как дискриминант = %f , корней уравнения нет", diskrimenant);
 		printf("\nДействительных корней нет");
 	}
 	if (diskrimenant == 0) {
 		c = (-b) / (2 * a);
 
-		fprintf(answer, "Так как дискрименант равен =%f , то корни одинаковы и равны = %f", diskrimenant, c);
+		fprintf(ovtev, "Так как дискрименант равен =%f , то корни одинаковы и равны = %f", diskrimenant, c);
 		printf("\nТак как дискрименант равен =%f , то корни x1,x2 одинаковы и равны = %f", diskrimenant, c);
 	}
 	if (diskrimenant > 0) {
-		fprintf(answer, "Дискриминант = %f ", diskrimenant);
+		fprintf(ovtev, "Дискриминант = %f ", diskrimenant);
 		printf("\nДискриминант = %f ", diskrimenant);
 		c = (-b + diskrimenant) / (2 * a);
-		fprintf(answer, "x1 = %f", c);
+		fprintf(ovtev, "x1 = %f", c);
 		printf("\nКорень равен 1 = %f", c);
 		c = (-b - diskrimenant) / (2 * a);
-		fprintf(answer, "x2 = %f", c);
+		fprintf(ovtev, "x2 = %f", c);
 		printf("\nКорень равен 2 = %f\n", c);
 	}
-	fclose(answer);
+	fclose(ovtev);
 	return 0;
 }
